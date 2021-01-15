@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="tittle_style">
+    <style name="title_style">
         <item name="fontFamily">@font/carter_one</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
@@ -30,8 +30,8 @@
     </style>
 
     <style name="button_style">
-        <item name="android:layout_height">@dimen/activity_main_height_button</item>
-        <item name="android:layout_width">@dimen/activity_main_width_button</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">0dp</item>
         <item name="backgroundTint">@color/activity_main_color_default_button</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/activity_main_text_size_button</item>

@@ -10,8 +10,6 @@
     <dimen name="activity_main_text_size_screen_result">40sp</dimen>
     <dimen name="activity_main_padding_bottom_screen_result">10dp</dimen>
     <dimen name="activity_main_margin_bottom_screen_result">40dp</dimen>
-    <dimen name="activity_main_height_button">0dp</dimen>
-    <dimen name="activity_main_width_button">0dp</dimen>
     <dimen name="activity_main_text_size_button">20sp</dimen>
     <dimen name="activity_main_margin_top_button">40dp</dimen>
 </resources>
