@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/text_view_tittle"
+        android:id="@+id/text_view_title"
         style="@style/title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="@string/activity_main_calculator_operation_text"
         app:layout_constraintBottom_toTopOf="@id/text_view_result"
-        app:layout_constraintTop_toBottomOf="@id/text_view_tittle" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_title" />
 
     <TextView
         android:id="@+id/text_view_result"
