@@ -1,15 +1,13 @@
 package com.example.calculator.mvp.presenter;
 
 import com.example.calculator.mvp.contract.CalculatorContract;
-import com.example.calculator.mvp.model.CalculatorModel;
-import com.example.calculator.mvp.view.CalculatorView;
 
 public class CalculatorPresenter implements CalculatorContract.Presenter {
 
-    private CalculatorModel model;
-    private CalculatorView view;
+    private CalculatorContract.Model model;
+    private CalculatorContract.View view;
 
-    public CalculatorPresenter(CalculatorModel model, CalculatorView view) {
+    public CalculatorPresenter(CalculatorContract.Model model, CalculatorContract.View view) {
         this.model = model;
         this.view = view;
     }
