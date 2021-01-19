@@ -1,6 +1,7 @@
 package com.example.calculator;
 
 import android.os.Bundle;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.calculator.databinding.ActivityMainBinding;
 import com.example.calculator.mvp.model.CalculatorModel;
@@ -22,21 +23,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        binding.buttonAdd.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonAdd.getText().toString()));
-        binding.buttonSub.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonSub.getText().toString()));
-        binding.buttonProduct.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonProduct.getText().toString()));
-        binding.buttonDivision.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonDivision.getText().toString()));
-        binding.buttonClear.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonClear.getText().toString()));
-        binding.buttonEquals.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonEquals.getText().toString()));
-        binding.buttonZero.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonZero.getText().toString()));
-        binding.buttonOne.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonOne.getText().toString()));
-        binding.buttonTwo.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonTwo.getText().toString()));
-        binding.buttonThree.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonThree.getText().toString()));
-        binding.buttonFour.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonFour.getText().toString()));
-        binding.buttonFive.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonFive.getText().toString()));
-        binding.buttonSix.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonSix.getText().toString()));
-        binding.buttonSeven.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonSeven.getText().toString()));
-        binding.buttonEight.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonEight.getText().toString()));
-        binding.buttonNine.setOnClickListener(view -> presenter.onButtonPressed(binding.buttonNine.getText().toString()));
+        setUpClickListenerToButton(binding.buttonAdd);
+        setUpClickListenerToButton(binding.buttonSub);
+        setUpClickListenerToButton(binding.buttonProduct);
+        setUpClickListenerToButton(binding.buttonDivision);
+        setUpClickListenerToButton(binding.buttonEquals);
+        setUpClickListenerToButton(binding.buttonClear);
+        setUpClickListenerToButton(binding.buttonZero);
+        setUpClickListenerToButton(binding.buttonOne);
+        setUpClickListenerToButton(binding.buttonTwo);
+        setUpClickListenerToButton(binding.buttonThree);
+        setUpClickListenerToButton(binding.buttonFour);
+        setUpClickListenerToButton(binding.buttonFive);
+        setUpClickListenerToButton(binding.buttonSix);
+        setUpClickListenerToButton(binding.buttonSeven);
+        setUpClickListenerToButton(binding.buttonEight);
+        setUpClickListenerToButton(binding.buttonNine);
+    }
+
+    private void setUpClickListenerToButton(Button buttonPressed) {
+        buttonPressed.setOnClickListener(view -> presenter.onButtonPressed(buttonPressed.getText().toString()));
     }
 }
