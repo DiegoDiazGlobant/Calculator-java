@@ -23,25 +23,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        setUpClickListenerToButton(binding.buttonAdd);
-        setUpClickListenerToButton(binding.buttonSub);
-        setUpClickListenerToButton(binding.buttonProduct);
-        setUpClickListenerToButton(binding.buttonDivision);
-        setUpClickListenerToButton(binding.buttonEquals);
-        setUpClickListenerToButton(binding.buttonClear);
-        setUpClickListenerToButton(binding.buttonZero);
-        setUpClickListenerToButton(binding.buttonOne);
-        setUpClickListenerToButton(binding.buttonTwo);
-        setUpClickListenerToButton(binding.buttonThree);
-        setUpClickListenerToButton(binding.buttonFour);
-        setUpClickListenerToButton(binding.buttonFive);
-        setUpClickListenerToButton(binding.buttonSix);
-        setUpClickListenerToButton(binding.buttonSeven);
-        setUpClickListenerToButton(binding.buttonEight);
-        setUpClickListenerToButton(binding.buttonNine);
+        setUpClickListenerToOperatorButton(binding.buttonAdd);
+        setUpClickListenerToOperatorButton(binding.buttonSub);
+        setUpClickListenerToOperatorButton(binding.buttonProduct);
+        setUpClickListenerToOperatorButton(binding.buttonDivision);
+        setUpClickListenerToNumberButton(binding.buttonZero);
+        setUpClickListenerToNumberButton(binding.buttonOne);
+        setUpClickListenerToNumberButton(binding.buttonTwo);
+        setUpClickListenerToNumberButton(binding.buttonThree);
+        setUpClickListenerToNumberButton(binding.buttonFour);
+        setUpClickListenerToNumberButton(binding.buttonFive);
+        setUpClickListenerToNumberButton(binding.buttonSix);
+        setUpClickListenerToNumberButton(binding.buttonSeven);
+        setUpClickListenerToNumberButton(binding.buttonEight);
+        setUpClickListenerToNumberButton(binding.buttonNine);
+        binding.buttonEquals.setOnClickListener(view -> presenter.onEqualsButtonPressed());
+        binding.buttonClear.setOnClickListener(view -> presenter.onClearLastButtonPressed());
+        binding.buttonClear.setOnLongClickListener(view -> presenter.onClearAllButtonPressed());
     }
 
-    private void setUpClickListenerToButton(Button buttonPressed) {
-        buttonPressed.setOnClickListener(view -> presenter.onButtonPressed(buttonPressed.getText().toString()));
+    private void setUpClickListenerToNumberButton(Button buttonPressed) {
+        buttonPressed.setOnClickListener(view -> presenter.onNumberButtonPressed(buttonPressed.getText().toString()));
+    }
+
+    private void setUpClickListenerToOperatorButton(Button buttonPressed) {
+        buttonPressed.setOnClickListener(view -> presenter.onOperatorButtonPressed(buttonPressed.getText().toString()));
     }
 }
