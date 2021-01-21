@@ -27,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setUpClickListenerToOperatorButton(binding.buttonSub);
         setUpClickListenerToOperatorButton(binding.buttonProduct);
         setUpClickListenerToOperatorButton(binding.buttonDivision);
-        setUpClickListenerToEqualsButton(binding.buttonEquals);
-        setUpClickListenerToClearLastButton(binding.buttonClear);
-        setUpClickListenerToClearAllButton(binding.buttonClear);
         setUpClickListenerToNumberButton(binding.buttonZero);
         setUpClickListenerToNumberButton(binding.buttonOne);
         setUpClickListenerToNumberButton(binding.buttonTwo);
@@ -40,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         setUpClickListenerToNumberButton(binding.buttonSeven);
         setUpClickListenerToNumberButton(binding.buttonEight);
         setUpClickListenerToNumberButton(binding.buttonNine);
+        binding.buttonEquals.setOnClickListener(view -> presenter.onEqualsButtonPressed());
+        binding.buttonClear.setOnClickListener(view -> presenter.onClearLastButtonPressed());
+        binding.buttonClear.setOnLongClickListener(view -> presenter.onClearAllButtonPressed());
     }
 
     private void setUpClickListenerToNumberButton(Button buttonPressed) {
@@ -48,17 +48,5 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpClickListenerToOperatorButton(Button buttonPressed) {
         buttonPressed.setOnClickListener(view -> presenter.onOperatorButtonPressed(buttonPressed.getText().toString()));
-    }
-
-    private void setUpClickListenerToEqualsButton(Button buttonPressed) {
-        buttonPressed.setOnClickListener(view -> presenter.onEqualsButtonPressed());
-    }
-
-    private void setUpClickListenerToClearLastButton(Button buttonPressed) {
-        buttonPressed.setOnClickListener(view -> presenter.onClearLastButtonPressed());
-    }
-
-    private void setUpClickListenerToClearAllButton(Button buttonPressed) {
-        buttonPressed.setOnLongClickListener(view -> presenter.onClearAllButtonPressed());
     }
 }

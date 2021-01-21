@@ -17,6 +17,8 @@ public class CalculatorModel implements CalculatorContract.Model {
     private String operator = EMPTY;
     private String secondOperand = EMPTY;
     private String operationValue = EMPTY;
+    public static final int STRING_BEGIN_POSITION = 0;
+    public static final int STRING_LAST_POSITION = 1;
 
     @Override
     public void setNewOperand(String value) {
@@ -76,11 +78,11 @@ public class CalculatorModel implements CalculatorContract.Model {
     @Override
     public void deleteLast() {
         if (!secondOperand.isEmpty()) {
-            secondOperand = secondOperand.substring(0, secondOperand.length() - 1);
+            secondOperand = secondOperand.substring(STRING_BEGIN_POSITION, secondOperand.length() - STRING_LAST_POSITION);
         } else if (!operator.isEmpty()) {
-            operator = operator.substring(0, operator.length() - 1);
+            operator = operator.substring(STRING_BEGIN_POSITION, operator.length() - STRING_LAST_POSITION);
         } else if (!firstOperand.isEmpty()) {
-            firstOperand = firstOperand.substring(0, firstOperand.length() - 1);
+            firstOperand = firstOperand.substring(STRING_BEGIN_POSITION, firstOperand.length() - STRING_LAST_POSITION);
         }
         operationValue = firstOperand + operator + secondOperand;
     }
