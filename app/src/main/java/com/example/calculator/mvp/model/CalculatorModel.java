@@ -1,7 +1,7 @@
 package com.example.calculator.mvp.model;
 
 import com.example.calculator.mvp.contract.CalculatorContract;
-import com.example.calculator.utils.ErrorEnum;
+import com.example.calculator.utils.ResultEnum;
 import static com.example.calculator.utils.StringUtils.ADD;
 import static com.example.calculator.utils.StringUtils.DIV;
 import static com.example.calculator.utils.StringUtils.EMPTY;
@@ -18,26 +18,28 @@ public class CalculatorModel implements CalculatorContract.Model {
     public static final int STRING_BEGIN_POSITION = 0;
     public static final int STRING_LAST_POSITION = 1;
     public boolean equalsPressed = false;
-    private ErrorEnum errorEnum;
+    private ResultEnum errorEnum;
 
     @Override
     public void setNewOperand(String value) {
         operationValue += value;
-        if (operator.isEmpty())
+        if (operator.isEmpty()) {
             firstOperand += value;
-        else
+        } else {
             secondOperand += value;
+        }
     }
 
     @Override
     public void setNewOperator(String value) {
         operationValue += value;
-        if (firstOperand.isEmpty())
+        if (firstOperand.isEmpty()) {
             firstOperand += value;
-        else if (operator.isEmpty())
+        } else if (operator.isEmpty()) {
             operator = value;
-        else if (secondOperand.isEmpty())
+        } else if (secondOperand.isEmpty()) {
             secondOperand += value;
+        }
     }
 
     @Override
@@ -56,9 +58,9 @@ public class CalculatorModel implements CalculatorContract.Model {
 
     @Override
     public String getResultValue() {
-        errorEnum = ErrorEnum.NONE;
+        errorEnum = ResultEnum.SUCCES;
         if (incompleteOperation()) {
-            errorEnum = ErrorEnum.INCOMPLETE_OPERATION_ERROR;
+            errorEnum = ResultEnum.INCOMPLETE_OPERATION_ERROR;
             return EMPTY;
         }
         return doOperation();
@@ -74,7 +76,7 @@ public class CalculatorModel implements CalculatorContract.Model {
                 return String.valueOf(Double.parseDouble(firstOperand) * Double.parseDouble(secondOperand));
             case DIV:
                 if (secondOperand.equals(ZERO)) {
-                    errorEnum = ErrorEnum.DIVIDE_BY_0_ERROR;
+                    errorEnum = ResultEnum.DIVIDE_BY_ZERO_ERROR;
                     return EMPTY;
                 }
                 return String.valueOf(Double.parseDouble(firstOperand) / Double.parseDouble(secondOperand));
@@ -106,7 +108,7 @@ public class CalculatorModel implements CalculatorContract.Model {
         secondOperand = EMPTY;
         operationValue = EMPTY;
         equalsPressed = false;
-        errorEnum = ErrorEnum.NONE;
+        errorEnum = ResultEnum.SUCCES;
     }
 
     @Override
@@ -122,7 +124,7 @@ public class CalculatorModel implements CalculatorContract.Model {
     @Override
     public void updateValues() {
         String result = getResultValue();
-        if (!errorEnum.equals(ErrorEnum.DIVIDE_BY_0_ERROR) && !errorEnum.equals(ErrorEnum.INCOMPLETE_OPERATION_ERROR)) {
+        if (!errorEnum.equals(ResultEnum.DIVIDE_BY_ZERO_ERROR) && !errorEnum.equals(ResultEnum.INCOMPLETE_OPERATION_ERROR)) {
             firstOperand = EMPTY;
             operator = EMPTY;
             secondOperand = EMPTY;
@@ -133,7 +135,7 @@ public class CalculatorModel implements CalculatorContract.Model {
     }
 
     @Override
-    public ErrorEnum getErrorEnum() {
+    public ResultEnum getErrorEnum() {
         return errorEnum;
     }
 }

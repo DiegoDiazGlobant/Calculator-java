@@ -1,7 +1,7 @@
 package com.example.calculator.utils;
 
-public enum ErrorEnum {
+public enum ResultEnum {
     INCOMPLETE_OPERATION_ERROR,
-    DIVIDE_BY_0_ERROR,
-    NONE;
+    DIVIDE_BY_ZERO_ERROR,
+    SUCCES;
 }

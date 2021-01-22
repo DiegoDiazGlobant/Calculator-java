@@ -29,21 +29,22 @@ public class CalculatorPresenter implements CalculatorContract.Presenter {
             model.setNewOperator(buttonText);
             view.showOperationValue(model.getOperationValue());
             view.showResultValue(buttonText);
-        } else
+        } else {
             view.showWrongOperator();
+        }
     }
 
     @Override
     public void onEqualsButtonPressed() {
         String result = model.getResultValue();
         switch (model.getErrorEnum()) {
-            case DIVIDE_BY_0_ERROR:
+            case DIVIDE_BY_ZERO_ERROR:
                 view.showDivideByZero();
                 break;
             case INCOMPLETE_OPERATION_ERROR:
                 view.showIncompleteOperation();
                 break;
-            case NONE:
+            case SUCCES:
                 view.showResultValue(result);
                 model.setEqualsPressed();
                 break;
@@ -53,10 +54,11 @@ public class CalculatorPresenter implements CalculatorContract.Presenter {
     @Override
     public void onClearLastButtonPressed() {
         model.deleteLast();
-        if (model.getOperationValue().equals(EMPTY))
+        if (model.getOperationValue().equals(EMPTY)) {
             view.clearValues();
-        else
+        } else {
             view.clearLast(model.getOperationValue());
+        }
     }
 
     @Override
