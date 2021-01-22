@@ -30,6 +30,16 @@ public class CalculatorView extends ActivityView implements CalculatorContract.V
     }
 
     @Override
+    public void showIncompleteOperation() {
+        showResultValue(getContext().getString(R.string.activity_main_calculator_incomplete_operation_error));
+    }
+
+    @Override
+    public void showDivideByZero() {
+        showResultValue(getContext().getString(R.string.activity_main_calculator_divide_by_zero_error));
+    }
+
+    @Override
     public void clearValues() {
         showOperationValue(getContext().getString(R.string.activity_main_calculator_operation_text));
         showResultValue(getContext().getString(R.string.activity_main_calculator_result_text));

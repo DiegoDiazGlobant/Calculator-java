@@ -1,5 +1,7 @@
 package com.example.calculator.mvp.contract;
 
+import com.example.calculator.utils.ErrorEnum;
+
 public interface CalculatorContract {
 
     interface Model {
@@ -16,6 +18,14 @@ public interface CalculatorContract {
         void deleteLast();
 
         void resetValues();
+
+        void setEqualsPressed();
+
+        boolean getEqualsPressed();
+
+        void updateValues();
+
+        ErrorEnum getErrorEnum();
     }
 
     interface Presenter {
@@ -36,6 +46,10 @@ public interface CalculatorContract {
         void showResultValue(String result);
 
         void showWrongOperator();
+
+        void showIncompleteOperation();
+
+        void showDivideByZero();
 
         void clearValues();
 
