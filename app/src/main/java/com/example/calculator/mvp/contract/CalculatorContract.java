@@ -15,7 +15,7 @@ public interface CalculatorContract {
         void setEqualsPressed();
         boolean getEqualsPressed();
         void updateValues();
-        ResultEnum getErrorEnum();
+        ResultEnum getResultEnum();
     }
 
     interface Presenter {

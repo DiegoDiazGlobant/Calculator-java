@@ -18,7 +18,7 @@ public class CalculatorModel implements CalculatorContract.Model {
     public static final int STRING_BEGIN_POSITION = 0;
     public static final int STRING_LAST_POSITION = 1;
     public boolean equalsPressed = false;
-    private ResultEnum errorEnum;
+    private ResultEnum resultEnum;
 
     @Override
     public void setNewOperand(String value) {
@@ -58,9 +58,9 @@ public class CalculatorModel implements CalculatorContract.Model {
 
     @Override
     public String getResultValue() {
-        errorEnum = ResultEnum.SUCCES;
+        resultEnum = ResultEnum.SUCCESS;
         if (incompleteOperation()) {
-            errorEnum = ResultEnum.INCOMPLETE_OPERATION_ERROR;
+            resultEnum = ResultEnum.INCOMPLETE_OPERATION_ERROR;
             return EMPTY;
         }
         return doOperation();
@@ -76,7 +76,7 @@ public class CalculatorModel implements CalculatorContract.Model {
                 return String.valueOf(Double.parseDouble(firstOperand) * Double.parseDouble(secondOperand));
             case DIV:
                 if (secondOperand.equals(ZERO)) {
-                    errorEnum = ResultEnum.DIVIDE_BY_ZERO_ERROR;
+                    resultEnum = ResultEnum.DIVIDE_BY_ZERO_ERROR;
                     return EMPTY;
                 }
                 return String.valueOf(Double.parseDouble(firstOperand) / Double.parseDouble(secondOperand));
@@ -108,7 +108,7 @@ public class CalculatorModel implements CalculatorContract.Model {
         secondOperand = EMPTY;
         operationValue = EMPTY;
         equalsPressed = false;
-        errorEnum = ResultEnum.SUCCES;
+        resultEnum = ResultEnum.SUCCESS;
     }
 
     @Override
@@ -124,7 +124,7 @@ public class CalculatorModel implements CalculatorContract.Model {
     @Override
     public void updateValues() {
         String result = getResultValue();
-        if (!errorEnum.equals(ResultEnum.DIVIDE_BY_ZERO_ERROR) && !errorEnum.equals(ResultEnum.INCOMPLETE_OPERATION_ERROR)) {
+        if (!resultEnum.equals(ResultEnum.DIVIDE_BY_ZERO_ERROR) && !resultEnum.equals(ResultEnum.INCOMPLETE_OPERATION_ERROR)) {
             firstOperand = EMPTY;
             operator = EMPTY;
             secondOperand = EMPTY;
@@ -135,7 +135,7 @@ public class CalculatorModel implements CalculatorContract.Model {
     }
 
     @Override
-    public ResultEnum getErrorEnum() {
-        return errorEnum;
+    public ResultEnum getResultEnum() {
+        return resultEnum;
     }
 }

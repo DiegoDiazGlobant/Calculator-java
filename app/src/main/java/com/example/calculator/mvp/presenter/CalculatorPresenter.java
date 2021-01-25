@@ -37,14 +37,14 @@ public class CalculatorPresenter implements CalculatorContract.Presenter {
     @Override
     public void onEqualsButtonPressed() {
         String result = model.getResultValue();
-        switch (model.getErrorEnum()) {
+        switch (model.getResultEnum()) {
             case DIVIDE_BY_ZERO_ERROR:
                 view.showDivideByZero();
                 break;
             case INCOMPLETE_OPERATION_ERROR:
                 view.showIncompleteOperation();
                 break;
-            case SUCCES:
+            case SUCCESS:
                 view.showResultValue(result);
                 model.setEqualsPressed();
                 break;
