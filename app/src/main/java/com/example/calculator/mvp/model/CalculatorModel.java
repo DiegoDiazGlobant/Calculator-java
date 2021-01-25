@@ -1,12 +1,10 @@
 package com.example.calculator.mvp.model;
 
 import com.example.calculator.mvp.contract.CalculatorContract;
+import com.example.calculator.utils.ResultEnum;
 import static com.example.calculator.utils.StringUtils.ADD;
 import static com.example.calculator.utils.StringUtils.DIV;
-import static com.example.calculator.utils.StringUtils.DIVIDE_BY_0_ERROR;
 import static com.example.calculator.utils.StringUtils.EMPTY;
-import static com.example.calculator.utils.StringUtils.INCOMPLETE_OPERATION_ERROR;
-import static com.example.calculator.utils.StringUtils.OPERATION_STRING;
 import static com.example.calculator.utils.StringUtils.PRODUCT;
 import static com.example.calculator.utils.StringUtils.SUB;
 import static com.example.calculator.utils.StringUtils.ZERO;
@@ -19,38 +17,52 @@ public class CalculatorModel implements CalculatorContract.Model {
     private String operationValue = EMPTY;
     public static final int STRING_BEGIN_POSITION = 0;
     public static final int STRING_LAST_POSITION = 1;
+    public boolean equalsPressed = false;
+    private ResultEnum resultEnum;
 
     @Override
     public void setNewOperand(String value) {
         operationValue += value;
-        if (operator.isEmpty())
+        if (operator.isEmpty()) {
             firstOperand += value;
-        else
+        } else {
             secondOperand += value;
+        }
     }
 
     @Override
     public void setNewOperator(String value) {
         operationValue += value;
-        operator = value;
+        if (firstOperand.isEmpty()) {
+            firstOperand += value;
+        } else if (operator.isEmpty()) {
+            operator = value;
+        } else if (secondOperand.isEmpty()) {
+            secondOperand += value;
+        }
     }
 
     @Override
     public boolean canPressOperator(String value) {
-        return !firstOperand.isEmpty() && operator.isEmpty() && secondOperand.isEmpty();
+        return (
+                (firstOperand.isEmpty() && (value.equals(SUB))) ||
+                        (!firstOperand.isEmpty() && !firstOperand.equals(SUB) && operator.isEmpty()) ||
+                        (!operator.isEmpty() && secondOperand.isEmpty() && (value.equals(SUB)))
+        );
     }
 
     @Override
     public String getOperationValue() {
-        if ((firstOperand + operator + secondOperand).equals(EMPTY))
-            return OPERATION_STRING;
         return operationValue;
     }
 
     @Override
     public String getResultValue() {
-        if (incompleteOperation())
-            return INCOMPLETE_OPERATION_ERROR;
+        resultEnum = ResultEnum.SUCCESS;
+        if (incompleteOperation()) {
+            resultEnum = ResultEnum.INCOMPLETE_OPERATION_ERROR;
+            return EMPTY;
+        }
         return doOperation();
     }
 
@@ -63,8 +75,10 @@ public class CalculatorModel implements CalculatorContract.Model {
             case PRODUCT:
                 return String.valueOf(Double.parseDouble(firstOperand) * Double.parseDouble(secondOperand));
             case DIV:
-                if (secondOperand.equals(ZERO))
-                    return DIVIDE_BY_0_ERROR;
+                if (secondOperand.equals(ZERO)) {
+                    resultEnum = ResultEnum.DIVIDE_BY_ZERO_ERROR;
+                    return EMPTY;
+                }
                 return String.valueOf(Double.parseDouble(firstOperand) / Double.parseDouble(secondOperand));
             default:
                 return firstOperand;
@@ -93,5 +107,35 @@ public class CalculatorModel implements CalculatorContract.Model {
         operator = EMPTY;
         secondOperand = EMPTY;
         operationValue = EMPTY;
+        equalsPressed = false;
+        resultEnum = ResultEnum.SUCCESS;
+    }
+
+    @Override
+    public void setEqualsPressed() {
+        equalsPressed = true;
+    }
+
+    @Override
+    public boolean getEqualsPressed() {
+        return equalsPressed;
+    }
+
+    @Override
+    public void updateValues() {
+        String result = getResultValue();
+        if (!resultEnum.equals(ResultEnum.DIVIDE_BY_ZERO_ERROR) && !resultEnum.equals(ResultEnum.INCOMPLETE_OPERATION_ERROR)) {
+            firstOperand = EMPTY;
+            operator = EMPTY;
+            secondOperand = EMPTY;
+            operationValue = EMPTY;
+            equalsPressed = false;
+            setNewOperand(result);
+        }
+    }
+
+    @Override
+    public ResultEnum getResultEnum() {
+        return resultEnum;
     }
 }

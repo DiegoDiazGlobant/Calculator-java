@@ -14,3 +14,8 @@
 
 ##### diegodiaz/calculator_simple_operations
 ###### Basic operations and clear button funcionality
+
+#### 1/22/2021
+
+##### diegodiaz/calculator_negative_numbers
+###### Negative numbers, full operations and edge cases
