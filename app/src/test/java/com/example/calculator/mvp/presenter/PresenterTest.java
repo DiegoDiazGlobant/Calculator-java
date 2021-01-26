@@ -1,24 +1,25 @@
 package com.example.calculator.mvp.presenter;
 
+import com.example.calculator.mvp.contract.CalculatorContract;
 import com.example.calculator.mvp.model.CalculatorModel;
 import com.example.calculator.mvp.view.CalculatorView;
 import org.junit.Before;
 import org.junit.Test;
+import static com.example.calculator.utils.StringUtilsTest.ADD;
+import static com.example.calculator.utils.StringUtilsTest.DIV;
 import static com.example.calculator.utils.StringUtilsTest.DOUBLE_EIGHT;
 import static com.example.calculator.utils.StringUtilsTest.DOUBLE_FIFTEEN;
 import static com.example.calculator.utils.StringUtilsTest.DOUBLE_NEGATIVE_EIGHT;
 import static com.example.calculator.utils.StringUtilsTest.DOUBLE_NEGATIVE_TWO;
 import static com.example.calculator.utils.StringUtilsTest.DOUBLE_THREE;
 import static com.example.calculator.utils.StringUtilsTest.DOUBLE_TWO;
+import static com.example.calculator.utils.StringUtilsTest.EMPTY;
 import static com.example.calculator.utils.StringUtilsTest.FIVE;
 import static com.example.calculator.utils.StringUtilsTest.INCOMPLETE_OPERATION;
 import static com.example.calculator.utils.StringUtilsTest.NINE;
-import static com.example.calculator.utils.StringUtilsTest.THREE;
-import static com.example.calculator.utils.StringUtilsTest.ADD;
-import static com.example.calculator.utils.StringUtilsTest.DIV;
-import static com.example.calculator.utils.StringUtilsTest.EMPTY;
 import static com.example.calculator.utils.StringUtilsTest.PRODUCT;
 import static com.example.calculator.utils.StringUtilsTest.SUB;
+import static com.example.calculator.utils.StringUtilsTest.THREE;
 import static com.example.calculator.utils.StringUtilsTest.ZERO;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -26,9 +27,9 @@ import static org.mockito.Mockito.verify;
 
 public class PresenterTest {
 
-    private CalculatorModel model;
-    private CalculatorView view;
-    private CalculatorPresenter presenter;
+    private CalculatorContract.Model model;
+    private CalculatorContract.View view;
+    private CalculatorContract.Presenter presenter;
 
     @Before
     public void setup() {
