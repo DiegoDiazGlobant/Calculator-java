@@ -39,7 +39,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void NumberButtonPressedTest() {
+    public void numberButtonPressedTest() {
         presenter.onNumberButtonPressed(FIVE);
         assertEquals(FIVE, model.getOperationValue());
         verify(view).showOperationValue(model.getOperationValue());
@@ -47,7 +47,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void OperatorButtonPressedTest() {
+    public void operatorButtonPressedTest() {
         model.setNewOperand(FIVE);
         presenter.onOperatorButtonPressed(ADD);
         assertEquals(INCOMPLETE_OPERATION, model.getOperationValue());
@@ -56,7 +56,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void OperatorButtonPressedWrongOperatorErrorTest() {
+    public void operatorButtonPressedWrongOperatorErrorTest() {
         model.setNewOperand(FIVE);
         model.setNewOperator(SUB);
         presenter.onOperatorButtonPressed(DIV);
@@ -64,7 +64,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void EqualsButtonPressedDivideByZeroErrorTest() {
+    public void equalsButtonPressedDivideByZeroErrorTest() {
         model.setNewOperand(FIVE);
         model.setNewOperator(DIV);
         model.setNewOperand(ZERO);
@@ -73,7 +73,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void EqualsButtonPressedIncompleteOperationErrorTest() {
+    public void equalsButtonPressedIncompleteOperationErrorTest() {
         model.setNewOperand(FIVE);
         model.setNewOperator(DIV);
         presenter.onEqualsButtonPressed();
@@ -81,7 +81,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void EqualsButtonPressedWithAddOperationTest() {
+    public void equalsButtonPressedWithAddOperationTest() {
         model.setNewOperand(FIVE);
         model.setNewOperator(ADD);
         model.setNewOperand(THREE);
@@ -91,7 +91,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void EqualsButtonPressedWithSubOperationTest() {
+    public void equalsButtonPressedWithSubOperationTest() {
         model.setNewOperand(FIVE);
         model.setNewOperator(SUB);
         model.setNewOperand(THREE);
@@ -101,7 +101,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void EqualsButtonPressedWithProductOperationTest() {
+    public void equalsButtonPressedWithProductOperationTest() {
         model.setNewOperand(FIVE);
         model.setNewOperator(PRODUCT);
         model.setNewOperand(THREE);
@@ -111,7 +111,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void EqualsButtonPressedWithDivOperationTest() {
+    public void equalsButtonPressedWithDivOperationTest() {
         model.setNewOperand(NINE);
         model.setNewOperator(DIV);
         model.setNewOperand(THREE);
@@ -121,7 +121,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void EqualsButtonPressedWithAddOperationAndNegativeNumbersTest() {
+    public void equalsButtonPressedWithAddOperationAndNegativeNumbersTest() {
         model.setNewOperator(SUB);
         model.setNewOperand(FIVE);
         model.setNewOperator(ADD);
@@ -133,7 +133,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void EqualsButtonPressedWithSubOperationAndNegativeNumbersTest() {
+    public void equalsButtonPressedWithSubOperationAndNegativeNumbersTest() {
         model.setNewOperator(SUB);
         model.setNewOperand(FIVE);
         model.setNewOperator(SUB);
@@ -145,7 +145,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void EqualsButtonPressedWithProductOperationAndNegativeNumbersTest() {
+    public void equalsButtonPressedWithProductOperationAndNegativeNumbersTest() {
         model.setNewOperator(SUB);
         model.setNewOperand(FIVE);
         model.setNewOperator(PRODUCT);
@@ -157,7 +157,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void EqualsButtonPressedWithDivOperationAndNegativeNumbersTest() {
+    public void equalsButtonPressedWithDivOperationAndNegativeNumbersTest() {
         model.setNewOperator(SUB);
         model.setNewOperand(NINE);
         model.setNewOperator(DIV);
@@ -170,7 +170,7 @@ public class PresenterTest {
 
 
     @Test
-    public void ClearAllTest() {
+    public void clearAllTest() {
         presenter.onClearAllButtonPressed();
         assertEquals(EMPTY, model.getResultValue());
         assertEquals(EMPTY, model.getOperationValue());
@@ -178,7 +178,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void ClearLastValueTest() {
+    public void clearLastValueTest() {
         model.setNewOperand(FIVE);
         presenter.onClearLastButtonPressed();
         assertEquals(EMPTY, model.getOperationValue());
@@ -186,7 +186,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void ClearLastFirstOperandTest() {
+    public void clearLastFirstOperandTest() {
         model.setNewOperand(FIVE);
         model.setNewOperand(THREE);
         presenter.onClearLastButtonPressed();
@@ -195,7 +195,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void ClearLastOperatorTest() {
+    public void clearLastOperatorTest() {
         model.setNewOperand(FIVE);
         model.setNewOperator(PRODUCT);
         presenter.onClearLastButtonPressed();
@@ -204,7 +204,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void ClearLastSecondOperandTest() {
+    public void clearLastSecondOperandTest() {
         model.setNewOperand(FIVE);
         model.setNewOperator(ADD);
         model.setNewOperand(THREE);
